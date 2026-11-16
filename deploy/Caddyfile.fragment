@@ -1,0 +1,4 @@
+# 用实际域名与已核实的宿主机回环端口替换。仅用在宿主机 Caddy。
+classflow.example.invalid {
+    reverse_proxy 127.0.0.1:14318
+}

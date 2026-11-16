@@ -1,0 +1,15 @@
+{
+  "name": "@classflow/shared",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./validation": "./src/validation.ts",
+    "./presentations": "./src/presentations.ts",
+    "./handbook": "./src/handbook.ts"
+  },
+  "dependencies": {
+    "zod": "^4.1.12"
+  }
+}

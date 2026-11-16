@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>智慧水利与国防 · ClassFlow 01</title>
+<style>
+:root{color-scheme:dark;--deep:#011d1c;--teal:#012624;--surface:#003734;--white:#edfffe;--muted:#b7d4d0;--aqua:#7ff5e4;--pink:#ffd7e7;--line:#a0eee33d;font-family:"Microsoft YaHei","PingFang SC",system-ui,sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--deep);color:var(--white)}button,input,select{font:inherit}button,select{color:inherit;background:var(--surface);border:1px solid var(--line);border-radius:6px;min-height:38px;padding:6px 12px}button{cursor:pointer}button:hover:not(:disabled),button[aria-pressed=true]{background:#155550}button:disabled{opacity:.38;cursor:default}:focus-visible{outline:3px solid #df85b6;outline-offset:3px}
+.shell{height:100dvh;display:grid;grid-template-rows:auto minmax(0,1fr) auto}.top,.controls{display:flex;align-items:center;gap:10px;padding:8px 2.5vw;background:var(--deep)}.top{border-bottom:1px solid var(--line)}.brand{color:var(--aqua);font-weight:700;letter-spacing:.17em;font-size:12px;white-space:nowrap}.top small{margin-left:auto;color:var(--muted);font-size:12px}.controls{border-top:1px solid var(--line);flex-wrap:wrap;font-size:13px}.controls select{max-width:min(29vw,290px)}.count{font-variant-numeric:tabular-nums;color:var(--aqua);white-space:nowrap}.gap{flex:1}.progress{height:3px;background:var(--line);position:absolute;bottom:0;left:0;width:100%}.progress span{height:100%;display:block;background:linear-gradient(90deg,var(--aqua),var(--pink));transition:width .35s}.viewport{position:relative;min-height:0;overflow:auto;background:var(--teal)}.slide{position:relative;isolation:isolate;min-height:100%;display:flex;flex-direction:column;justify-content:center;padding:clamp(20px,5.4vw,85px);overflow:hidden}.slide>*:not(canvas){position:relative;z-index:1}.slide.paper{background:#f5efe3;color:#193b36;--muted:#48635c;--aqua:#116658;--surface:#e8ede3;--line:#37575042;--pink:#8c394e;color-scheme:light}.kicker{font-size:clamp(11px,1.25vw,16px);letter-spacing:.19em;color:var(--aqua);font-weight:700;margin:0 0 .85em}.hero{justify-content:flex-start;padding-top:clamp(30px,8vh,115px);background:radial-gradient(ellipse at 81% 55%,#075954 0,transparent 56%),var(--teal)}.hero h1{font:600 clamp(36px,7.2vw,108px)/1.08 "Noto Serif SC","Songti SC",SimSun,serif;margin:0;letter-spacing:-.035em}.hero .lead{border-left:4px solid var(--pink);padding-left:16px;margin-top:22px;max-width:62ch}.hero .year{position:absolute;right:5.4vw;bottom:clamp(18px,4vh,48px);font-family:Georgia,serif;font-size:clamp(25px,4vw,54px);color:var(--pink)}h2{font-size:clamp(27px,4.25vw,62px);font-weight:620;line-height:1.15;margin:0 0 .3em;letter-spacing:-.025em}.lead{font-size:clamp(16px,2vw,28px);line-height:1.6;color:var(--muted);margin:0 0 1em;max-width:62ch}.cards{display:grid;grid-template-columns:repeat(var(--cols,3),minmax(0,1fr));gap:clamp(8px,1.5vw,22px);margin:.6rem 0}.card{padding:clamp(12px,2vw,26px);border:1px solid var(--line);border-radius:16px;background:var(--surface);min-width:0}.card b{display:block;color:var(--aqua);font-size:clamp(17px,2.25vw,32px);line-height:1.3}.card p{font-size:clamp(13px,1.53vw,21px);line-height:1.6;margin:.6em 0 0;color:var(--muted)}.num{font-size:clamp(14px,1.5vw,22px);font-family:Georgia,serif;color:var(--pink);display:block;margin-bottom:.65em}.take{font-size:clamp(16px,2vw,27px);line-height:1.45;margin:1em 0 0;color:var(--aqua)}.source{font-size:12px;color:var(--muted);margin:14px 0 0}.date{font-family:Georgia,serif;font-size:clamp(42px,8vw,120px);color:var(--pink);line-height:1.05}.historical{display:grid;grid-template-columns:1.4fr 1fr;gap:3vw;align-items:center}.schematic{width:100%;border:1px solid var(--line);border-radius:16px;padding:12px;background:#e4eae0}.schematic svg{width:100%;height:auto;display:block}.schematic small{display:block;color:#48635c}.flow{stroke-dasharray:8 10;animation:flow 2.4s linear infinite}@keyframes flow{to{stroke-dashoffset:-36}}.eyeline{margin:18px 0;padding-left:14px;border-left:3px solid var(--aqua);font-size:clamp(14px,1.75vw,23px);line-height:1.6}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 14px}.tabs button{font-size:clamp(14px,1.6vw,21px);padding:9px 14px}.detail{min-height:130px;padding:clamp(15px,2.4vw,32px);border-radius:16px;background:var(--surface);border:1px solid var(--line);font-size:clamp(16px,2vw,27px);line-height:1.6}.detail b{color:var(--aqua)}.exercise{display:grid;grid-template-columns:1fr 1fr;gap:3vw}.exercise label{display:grid;gap:10px;font-size:clamp(15px,1.8vw,22px);margin:14px 0}.exercise input{width:100%;accent-color:#63dbc8}.meter{height:13px;border-radius:9px;background:#011d1c;overflow:hidden}.meter span{display:block;height:100%;background:linear-gradient(90deg,#61e7ca,#ffd7e7);transition:width .35s}.exercise output{display:block;color:var(--aqua);font-size:clamp(21px,3vw,38px);font-weight:700}.exercise p{line-height:1.6}.bigquote{font:600 clamp(30px,5vw,73px)/1.23 "Noto Serif SC",SimSun,serif;max-width:19ch}.citations{padding-left:1.4em;margin:.3em 0;line-height:1.75;font-size:clamp(14px,1.7vw,23px)}.citations a{color:var(--aqua)}.notes{position:absolute;z-index:4;bottom:12px;right:12px;max-width:min(650px,calc(100% - 24px));max-height:55%;overflow:auto;background:#f5efe3;color:#193b36;border:1px solid #809b93;border-radius:12px;padding:16px;line-height:1.7}.notes p{margin:.3em 0}.notes button{background:#e6eae2}.notes header{display:flex;justify-content:space-between;align-items:center;gap:16px}.art{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}.enter{animation:arrive .56s both;animation-delay:calc(var(--i,0) * 80ms)}@keyframes arrive{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:none}}.paused .enter{animation:none}.paused .flow{animation-play-state:paused}.paused .progress span,.paused .meter span{transition:none}
+@media(max-width:650px){.slide{padding:24px 18px;justify-content:flex-start}.cards{grid-template-columns:1fr}.card{display:grid;grid-template-columns:auto 1fr;gap:5px 10px}.card .num{grid-row:span 2;margin-top:3px}.card p{grid-column:2;margin:0}.historical,.exercise{grid-template-columns:1fr}.schematic{max-width:380px}.top small{display:none}.controls{gap:6px}.controls select{max-width:44vw;order:7}.controls .gap{display:none}.controls button{padding:5px 8px;min-height:34px}.controls .count{margin-left:auto}.notes{font-size:14px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+/* Refero adaptations: Steep's archive spread, SuperHi Plus's cobalt split, Contra's classroom cards. */
+.slide.paper {
+  background: #fff8f2;
+  color: #241a19;
+  --surface: #fbe1d1;
+  --aqua: #723721;
+  --muted: #604b43;
+  --line: #875b493f;
+  --pink: #913c29;
+}
+.paper h2 { font-family: "Songti SC", SimSun, Georgia, serif; font-weight: 600; }
+.paper .schematic { background: #fbe1d1; border-radius: 24px; }
+.paper .card { border-radius: 24px; }
+.timeline {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 18px 0 0;
+  padding: 0;
+}
+.timeline li { position: relative; border-top: 2px solid #ab5b42; padding: 20px 20px 0 0; }
+.timeline li::before {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #913c29;
+  top: -7px;
+}
+.timeline time { color: #913c29; font: 600 clamp(20px, 2.7vw, 40px)/1.15 Georgia, serif; }
+.timeline b { display: block; margin: 8px 0; font-size: clamp(17px, 1.9vw, 27px); }
+.timeline p { margin: 0; color: var(--muted); line-height: 1.6; font-size: clamp(14px, 1.5vw, 21px); }
+
+.slide.blue {
+  color: #f0f7ff;
+  background: #0033e5;
+  --aqua: #f0f7ff;
+  --muted: #e2ebff;
+  --surface: #0033e5;
+  --line: #f0f7ff88;
+  --pink: #ffddaf;
+}
+.blue .cards .card, .ice {
+  color: #10183b;
+  background: #f0f7ff;
+  border-color: transparent;
+  --aqua: #002bb8;
+  --muted: #32446a;
+  --pink: #8c3e13;
+  border-radius: 16px;
+}
+.split-layout { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); align-items: center; gap: 3vw; }
+.ice { padding: clamp(14px, 2.2vw, 30px); }
+.ice > p { font-size: clamp(14px, 1.55vw, 22px); line-height: 1.55; }
+.ice > .source { font-size: 12px; }
+.ice svg { display: block; width: 100%; height: auto; max-height: min(36vh, 250px); }
+.plot-label { color: #002bb8; font-weight: 700; }
+.plot-key { display: flex; flex-wrap: wrap; gap: 5px 16px; font-size: 13px; color: #263759; }
+.plot-key span::before { content: "●"; color: #0033e5; margin-right: 6px; }
+.plot-key span+span::before { color: #a9490b; }
+.plot-line { stroke-dasharray: 1; animation: trace 1.1s ease-out both; }
+.plot-line.later { animation-delay: .23s; }
+@keyframes trace { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+.paused .plot-line { animation: none; }
+
+.slide.lab {
+  color-scheme: light;
+  background: #fbfbff;
+  color: #14171f;
+  --aqua: #4230ac;
+  --muted: #3d475a;
+  --surface: #ddd8ff;
+  --line: #44328240;
+  --pink: #943638;
+}
+.lab .card, .lab .detail { background: #ddd8ff; }
+.lab .cards .card:nth-child(2), .lab .exercise > .card { background: #f0fb96; }
+.lab .exercise > .card { display: block; }
+.lab .cards .card:nth-child(3) { background: #ffe0da; }
+.lab .exercise > div:first-child { padding: 0 16px; border: 1px solid var(--line); border-radius: 16px; background: #ddd8ff; }
+.lab .exercise label { grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 6px 8px; margin: 12px 0; font-size: clamp(14px, 1.55vw, 21px); }
+.lab .exercise input { grid-column: 1 / -1; }
+.lab .exercise input { accent-color: #4937b8; }
+.lab .meter { background: #20263333; }
+.lab .meter span { background: #4937b8; }
+.lab .exercise output { color: #14171f; font-size: clamp(28px, 4vw, 56px); }
+.lab .tabs button, .choices button { color: #241c46; border-color: #51478a66; background: #eeeaff; }
+.lab .tabs button[aria-pressed=true], .choices button[aria-pressed=true] { background: #f0fb96; border-color: #51478a; }
+.choices { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 10px 0; }
+.choices button { text-align: left; min-height: 62px; font-size: clamp(14px, 1.5vw, 20px); padding: 12px; border-radius: 12px; }
+.choice-feedback { min-height: 3.5em; padding: 12px 16px; border-left: 4px solid #c5484b; background: #ffe0da; line-height: 1.5; }
+body[data-theme=paper] .top, body[data-theme=paper] .controls { background: #402b26; }
+body[data-theme=blue] .top, body[data-theme=blue] .controls { background: #101a69; }
+body[data-theme=lab] .top, body[data-theme=lab] .controls { background: #282341; }
+body[data-theme=paper] .controls { --surface: #66493e; }
+body[data-theme=blue] .controls { --surface: #2637ad; }
+body[data-theme=lab] .controls { --surface: #443964; }
+@media (min-width: 651px) and (max-height: 520px) {
+  .slide { padding: 12px 4.5vw; }
+  .hero { padding-top: 26px; }
+  .slide .kicker { margin-bottom: .55em; }
+  .slide h2 { font-size: clamp(26px, 3.5vw, 49px); }
+  .slide .lead { font-size: clamp(15px, 1.8vw, 22px); }
+  .slide .card { padding: 12px 16px; }
+  .slide .source { margin-top: 8px; }
+  .timeline { margin-top: 10px; }
+  .timeline li { padding-top: 12px; }
+  .timeline p { font-size: clamp(14px, 1.35vw, 18px); }
+}
+@media (max-width: 650px) {
+  .split-layout, .choices, .timeline { grid-template-columns: 1fr; }
+  .timeline { padding-left: 8px; }
+  .timeline li { border-top: 0; border-left: 2px solid #ab5b42; padding: 0 0 16px 16px; }
+  .timeline li::before { top: 5px; left: -7px; }
+  .ice svg { max-height: 24vh; }
+}
+</style>
+</head>
+<body>
+<div class="shell">
+<header class="top"><span class="brand">CLASSFLOW / 01</span><small>小组演示 · 水安全与国防</small></header>
+<div class="viewport" id="viewport">
+<main id="slide" class="slide" aria-label="课件正文"></main>
+<aside id="notes" class="notes" aria-label="讲稿" hidden><header><strong>讲稿</strong><button id="closeNotes">关闭</button></header><p id="notesText"></p></aside>
+<div class="progress" aria-hidden="true"><span id="progress"></span></div>
+</div>
+<nav class="controls" aria-label="课件操作">
+<button id="previous" aria-label="上一页">← 上一页</button><button id="next" aria-label="下一页">下一页 →</button>
+<span class="count" id="count" role="status"></span><select id="jump" aria-label="跳转章节"></select><span class="gap"></span>
+<button id="notesButton" aria-pressed="false">讲稿</button><button id="pause" aria-pressed="false">暂停动画</button><button id="fullscreen" hidden>全屏</button>
+</nav>
+</div>
+<script>
+'use strict';
+const $ = id => document.getElementById(id);
+const cards = (items, cols = 3) => '<div class="cards" style="--cols:'+cols+'">'+items.map(([label, text],i)=>
+  '<article class="card enter" style="--i:'+(i+1)+'"><span class="num">0'+(i+1)+'</span><b>'+label+'</b><p>'+text+'</p></article>').join('')+'</div>';
+const title = (heading, lead='') => '<h2 class="enter">'+heading+'</h2>'+(lead?'<p class="lead enter">'+lead+'</p>':'');
+const take = text => '<p class="take enter">'+text+'</p>';
+const source = text => '<p class="source">依据 '+text+' · 来源见末页</p>';
+const slides = [
+  {name:'智慧水利与国防',tag:'CLASSFLOW STUDY / 01',theme:'hero',art:'waves',body:'<h1 class="enter">智慧水利与国防</h1><p class="lead enter">从花园口的历史代价，到面向人民的水安全</p><span class="year">1938 → 当代</span>',
+    notes:'约 45 秒。开场问大家：如果一条河既关乎军事行动，也关乎沿河百姓的口粮、住处和饮水，判断一个决策好不好，要算哪几笔账？今天从花园口出发，再用一个课堂推演回答智慧水利能帮我们做什么。'},
+  {name:'1938 · 花园口决堤',tag:'01 / 历史现场',theme:'paper',body:'<div class="historical"><div><div class="date enter">1938.06.09</div>'+title('花园口决堤','抗日战争期间，为阻滞日军进攻，蒋介石下令决开郑州花园口一带的黄河大堤。')+'<p class="eyeline">黄河改道形成黄泛区，沿线居民遭受严重伤亡、流离失所和长期生计损失。</p>'+source('[1] 盐田档案与史志信息网')+'</div><div class="schematic enter"><svg viewBox="0 0 440 270" role="img" aria-label="黄河与决口后泛流方向的概念示意"><path d="M0 65Q92 8 177 75T440 66" fill="none" stroke="#856c43" stroke-width="18"/><path d="M182 77Q255 136 251 160T422 239" fill="none" stroke="#b07267" stroke-width="10" class="flow"/><circle cx="183" cy="77" r="12" fill="#8f3347"/><text x="205" y="43" fill="#193b36" font-size="18">花园口</text><text x="23" y="119" fill="#193b36" font-size="17">黄河</text><text x="264" y="191" fill="#733847" font-size="17">泛流方向</text></svg><small>概念示意 · 线条不表示实际河道与淹没边界</small></div></div>',
+    notes:'约 70 秒。交代侵华战争背景，讲清决堤为人工决策。军事目的与最终军事效果是两个问题。史料对伤亡、受灾人口及统计时段的口径并不完全一致，本页聚焦可以确认的平民灾难。示意图只表现河流改道这一关系。'},
+  {name:'军事意图与平民代价',tag:'02 / 两笔账',theme:'paper',body:title('军事意图与平民代价','作出战时决策时，必须看见影响延伸到何处、持续多久。')+cards([['军事意图','以洪水阻碍日军推进。评估时需要另查实际战事和行动时间线。'],['平民代价','房屋、耕地与生活用水受到破坏。撤离、生计恢复和安置要持续很久。']],2)+take('课堂提问　如果只统计前线变化，会漏掉哪些后果？')+source('[1] 历史事件记录'),
+    notes:'约 55 秒。让一位同学举例，比如种植季节错过、饮水来源失去、儿童教育中断。讨论区分事实和推断。可以承认战争决策的复杂性，同时把普通人面临的后果放回分析。'},
+  {name:'1938—1947 · 决口之后',tag:'02B / 九年时间轴',theme:'paper',body:title('从决口到归故','把视线从战事当天拉到河道恢复和居民安置。')+'<ol class="timeline"><li class="enter"><time>1938.06</time><b>决口与改道</b><p>洪水向下游蔓延，居住和生产条件被改变。</p></li><li class="enter" style="--i:1"><time>1946</time><b>复堤与搬迁</b><p>故道堤防失修，复堤与河床居民搬迁成为归故前的安全问题。</p></li><li class="enter" style="--i:2"><time>1947.03</time><b>堵口合龙</b><p>黄河回归故道，堤防修复、安置与复耕仍需持续。</p></li></ol>'+source('[1] 决堤记录　[4] 山东地情档案'),
+    notes:'约 65 秒。1938 年 6 月决口，1947 年 3 月 15 日堵口合龙。归故工程也会重新分配风险：故道堤防能否承受来水，河床居民有没有搬迁时间？请同学区分工程完成与生活恢复这两个时间点。'},
+  {name:'一条河连接多个系统',tag:'03 / 从河道到社会',art:'orbit',body:title('一条河连接多个系统','水网是供水、防洪、生产和社会运转共享的基础。')+cards([['基本生活','城镇饮水、医院卫生、应急供水。'],['生产与交通','农田灌溉、工业用水、通航与跨河交通。'],['应急保障','预警信息、转移路线、救援补给。']])+take('供水中断时，备用水源和恢复时间同样重要。')+source('[2] 《国家水网建设规划纲要》'),
+    notes:'约 50 秒。任选医院说明依赖链：停电可能影响抽水和处理，供水不足又影响卫生和诊疗。举一条跨河道路的例子，把水风险与救援运输联系起来。'},
+  {name:'国防视角下的水安全',tag:'04 / 保护关键功能',art:'rays',body:title('国防视角下的水安全','平时能防灾，紧急状态下能维持供水、通行与救援。')+cards([['保护人','明确谁需要优先转移，预警能否送达。'],['保住服务','准备备用水源、供电和通信，演练接管流程。'],['协同救援','地方统一组织，专业救援力量按授权提供搜救、转运和保障。']])+take('水坝和堤防释放危险力量可能造成严重平民损害。国际人道法对此设有专门保护规则。')+source('[2] 国家水网纲要　[3] 《第一附加议定书》第 56 条'),
+    notes:'约 65 秒。把国防与民生连接起来：关键服务能恢复、救援能进得去，社会才有韧性。第 56 条是 1977 年文书，在适用条件下设保护及严格例外。本页用于理解今天的平民保护原则，不对 1938 年作追溯法律判断。'},
+  {name:'保住一座医院的用水',tag:'04B / 关键服务',body:title('保住一座医院的用水','教学情景：洪涝导致常用水源受影响，院内仍需维持基本诊疗。')+cards([['查清依赖','供水、供电、净化和道路状态逐一确认，核对现有储水和消耗。'],['准备接续','在合规水质检测与指挥安排下，接入备用水源或应急送水。'],['逐步恢复','确认供水水质与压力，记录中断时长，按实际需求调整保障。']])+take('用“关键服务中断多久”检验保障能力。'),
+    notes:'约 55 秒。这里是一座虚构医院。问学生：水车到了，如果道路进不了院、储水设施不能用，哪个部门需要提前协同？可扩展到安置点、消防和应急通信。'},
+  {name:'海河“23·7”洪水',tag:'04C / 真实事件复盘',theme:'blue',body:'<div class="split-layout"><div>'+title('海河“23·7”洪水','同一流域的雨情、工程调度与群众转移，需要跨地区协同。')+source('[5] 应急管理部　[6] 北京市水务局')+'</div><div class="ice enter"><p class="plot-label">2023.07–10 · 事件与复盘</p><p>受台风残余环流影响，华北出现极端降雨。海河流域多条河流发生编号洪水，京津冀等地启用多个蓄滞洪区。</p><p>同年 10 月，京津冀水务部门复盘雨情、调度和“四预”，讨论信息共享与会商机制。</p></div></div>',
+    notes:'约 70 秒。先交代真实汛情，再讲复盘议题。蓄滞洪区用来阶段性承接洪水，运用涉及群众转移、安置和恢复。引导同学思考上下游分别掌握什么信息，以及为什么要明确统一的时间、数据口径和联络人。'},
+  {name:'军地联动在洪涝现场',tag:'04D / 救援与保障',theme:'lab',body:title('军地联动在洪涝现场','2023 年京津冀防汛救灾中，部队官兵和民兵参加搜救、群众转移和抢险保障。')+cards([['需求对接','确认哪些区域失联、哪些人员需要接应，把信息交给统一指挥。'],['救援保障','国防部报道记录了救援力量转移群众、加固堤防、抢修道路和转运物资。'],['结果反馈','结合课堂情景核对到达名单、未完成任务及新的支援需求。']])+source('[7] 国防部防汛救灾报道；需求对接与反馈为课堂分析'),
+    notes:'约 60 秒。用洪灾实例说明军地协同的具体工作。水利专业人员提供雨水情、风险和工程信息，救援调度仍按法定职责与统一指挥开展。问同学：水情图上如果没有道路状态和人员清单，救援队还缺什么？'},
+  {name:'智慧水利如何工作',tag:'05 / 从信号到行动',theme:'blue',body:title('智慧水利如何工作','用观测与模型帮助决策，再用现场反馈修正判断。')+cards([['感知','雨量、水位、流量和工程工况。'],['汇集','校时、质控，标记缺测和异常。'],['建模','更新数字孪生，比较不同来水情景。'],['研判','评估影响范围与预警提前量。'],['执行','经授权发布预警、组织转移并回收反馈。']],5)+take('哪一个环节失效，会让最后一公里收不到警报？')+source('[2] 国家水网纲要'),
+    notes:'约 65 秒。用一个上游水位站举例。单站突升既可能是真汛情，也可能是设备异常。用邻站、降雨和巡查复核，并把缺测和模型的不确定性摆给决策者。执行后确认村里是否真正收到并完成转移。'},
+  {name:'洪水过程线 · 峰值和时间',tag:'05B / 读懂洪峰',theme:'blue',body:'<div class="split-layout"><div>'+title('读懂洪峰','过程线把流量随时间的变化画出来。看峰值，也看洪峰何时到。')+take('比较情景，再核对下游风险。')+'</div><div class="ice enter"><div class="plot-label">同一断面 · 两条课堂示意过程线</div><svg viewBox="0 0 480 220" role="img" aria-label="情景甲洪峰较早较高，情景乙洪峰较晚较低的概念示意"><path d="M47 24V184H461" fill="none" stroke="#2d4266" stroke-width="2"/><path d="M47 75H461 M47 127H461" stroke="#9cb3d7" stroke-dasharray="5 5"/><path class="plot-line" pathLength="1" d="M48 180C130 178 142 151 177 85S232 23 271 94S341 176 459 181" fill="none" stroke="#0033e5" stroke-width="5"/><path class="plot-line later" pathLength="1" d="M48 181C152 179 178 170 233 132S305 97 353 139S401 175 459 181" fill="none" stroke="#a9490b" stroke-width="5"/><text x="48" y="18" font-size="14" fill="#263759">相对流量</text><text x="410" y="211" font-size="14" fill="#263759">时间 →</text></svg><div class="plot-key"><span>情景甲 · 较早、较高</span><span>情景乙 · 较晚、较低</span></div><p class="source">曲线为概念示意，无实测流量或调度参数。</p></div></div>',
+    notes:'约 65 秒。让学生在图上指一指两个峰值的位置。即使情景乙较低，也要问是否仍会超过当地防御标准，与其他支流洪峰是否相遇。真实过程线来自监测或模型，须说明时间、测站、单位和误差。'},
+  {name:'四预 · 点击逐项展开',tag:'06 / 可操作的四预',theme:'lab',body:title('四预如何连起来？','依次点开四项，把同一场强降雨变成可执行的响应。')+'<div class="tabs" id="forecastTabs"></div><div class="detail" id="forecastDetail" aria-live="polite"></div>'+source('[2] 国家水网纲要'),
+    notes:'约 80 秒。让一位同学依次点击。预报回答会发生什么，预警回答谁要知道，预演比较行动结果，预案规定谁何时做什么。提醒同学预案是平时就要做好的，实际工作允许预报和处置反复更新。'},
+  {name:'互动推演 · 留给撤离多少时间',tag:'07 / 课堂模拟',theme:'lab',body:title('留给撤离多少时间？','假设道路还能通行，拖动滑块，观察通知和组织过程怎样消耗时间。')+'<div class="exercise"><div><label>预报提前量 <strong id="leadValue"></strong><input id="leadTime" type="range" min="30" max="180" step="5" value="100"></label><label>通知与集结用时 <strong id="delayValue"></strong><input id="delayTime" type="range" min="10" max="120" step="5" value="55"></label></div><div class="card"><output id="remaining" aria-live="polite"></output><div class="meter" aria-hidden="true"><span id="timeBar"></span></div><p id="timeMessage"></p></div></div><p class="source">虚构参数，仅用于理解时间差。未计算实际转运、道路、洪水传播或安全阈值。</p>',
+    notes:'约 90 秒。初始 100−55＝45 分钟，这只是扣除通知和集结的剩余时间，还没扣除实际路途。把集结调到 105，讨论为什么仅把预警发出去还不够。问有没有比提高模型精度更能立即争取时间的措施，例如更新联络表与提前演练。'},
+  {name:'联动 · 把警报送到人',tag:'08 / 协同演练',theme:'lab',body:title('把警报送到人','课堂情景：洪峰接近，下游一处村庄通信不稳定。')+cards([['水利部门','交叉核验雨水情，更新风险范围和不确定性。'],['属地与应急','启动预案，逐户通知并核对特殊人群名单。'],['救援力量','按统一指挥接应转移，报告完成情况并补齐遗漏。']])+take('看三个结果　是否收到 · 是否出发 · 是否到达')+source('基于 [2] 的课堂情景，职责按当地预案确定'),
+    notes:'约 55 秒。让三个小组各选一个角色。每组回答：你收到什么信息，发给谁，如何确认对方已经行动？讨论断网时使用广播、电话、巡查与纸质清单的备用路径。'},
+  {name:'设备和网络失效时',tag:'09 / 留出备用路径',theme:'blue',body:title('设备和网络失效时','把失联、误报和误操作写入演练。')+cards([['观测不一致','保留原始记录，与邻站交叉核验，派人复测。'],['网络不可用','启用本地值守、备用通信和纸质预案。'],['指令高风险','核对权限与审批，保存指令记录，确认现场反馈。']])+take('现场演练要测恢复时间、覆盖范围和失联对象。'),
+    notes:'约 45 秒。设想服务器仍在线、村里手机却没信号。这时系统界面正常不代表人已获知风险。用演练检验有没有人、有备用通信、有记录。'},
+  {name:'现场选择 · 测站失联',tag:'09B / 课堂选择题',theme:'lab',body:title('测站失联，你会先做什么？','课堂情景：上游一处测站中断，邻站仍在上涨，低洼村庄可能受影响。')+'<div class="choices" id="decisionChoices"><button data-choice="0">A · 等故障测站恢复后再行动</button><button data-choice="1">B · 直接把最后一次读数当成现状</button><button data-choice="2">C · 核验其他信号，同时通知属地准备</button></div><div class="choice-feedback" id="decisionFeedback" aria-live="polite">选一项，看看这一步会影响什么。</div><p class="source">课堂情景。实际预警和处置按属地预案与授权执行。</p>',
+    notes:'约 75 秒。请三组各选一项并说明理由。C 同时争取核验和准备时间。继续追问谁联系邻站、谁检查备用通信、何时再次会商。正式指令需要授权，并记录所用证据与判断。'},
+  {name:'如果能多知道一些',tag:'10 / 历史反思',theme:'paper',body:title('如果能多知道一些','更早了解淹没范围、转移能力与居民分布，会怎样影响对一项决策的评估？')+cards([['能改善的信息','风险范围、时间窗、受影响的人群和设施。'],['仍要作出的决定','评估替代方案，给平民保护留出资源，明确谁负责。']],2)+take('技术扩大可见范围，决策者仍须对后果负责。'),
+    notes:'约 55 秒。这是反事实讨论，不能说今天的技术必然改变当年的战争决策。请同学区分技术可提供的证据与制度、价值选择、责任分配。'},
+  {name:'小组讨论与结语',tag:'11 / DISCUSSION',art:'waves',body:'<p class="bigquote enter">水安全的尺度，<br>在沿河每个人的生活里。</p><p class="lead">如果预算只够先做一件事，你会加密监测，还是先补齐预警送达和转移演练？</p>'+take('请说明你选的风险、判断依据，以及怎样验证有效。'),
+    notes:'约 70 秒。让两组给出不同选择。追问目前哪段最慢、风险最大，拿什么证据验证。可以用收到预警的人数比例、集结时间、供水恢复时间作为讨论指标。'},
+  {name:'资料与动画来源',tag:'12 / SOURCES',theme:'paper',body:title('资料与动画来源','讲述区分史料、真实案例和课堂示意。')+'<ol class="citations"><li>盐田档案与史志信息网，花园口决堤事件记录。</li><li>中共中央、国务院，《国家水网建设规划纲要》。</li><li>红十字国际委员会，《第一附加议定书》第 56 条。</li><li>山东地情档案，黄河整修改建。</li><li>应急管理部，2023 年 7 月全国自然灾害情况。</li><li>北京市水务局，海河“23·7”洪水京津冀复盘。</li><li>国防部，京津冀抗洪抢险一线报道。</li></ol><p class="source">视觉参考 Auros、Steep、SuperHi Plus、Contra。动效复用本地 Stripe Motion 动画库。原始网址见文件内注释与配套 SOURCES.md。</p>',
+    notes:'可留作课后检索。实际案例采用机构发布材料，水文曲线和推演参数属于课堂示意。'}
+];
+/*
+[1] https://www.yantian.gov.cn/ytdayszxxw/lsjt/content/post_11736702.html
+[2] https://www.mee.gov.cn/zcwj/zyygwj/202305/t20230529_1031583.shtml
+[3] https://ihl-databases.icrc.org/en/ihl-treaties/api-1977/article-56
+[4] https://shandong-chorography.org/database/a/section/21/article/74/
+[5] https://www.mem.gov.cn/xw/yjglbgzdt/202308/t20230804_458461.shtml
+[6] https://swj.beijing.gov.cn/swdt/ztzl/hczzl/zydt/202310/t20231027_3288746.html
+[7] https://www.mod.gov.cn/gfbw/wzll/mbyby/16242576.html
+Steep DESIGN.md https://styles.refero.design/style/75fdb89f-ca64-41b3-af36-7a78bd09448e
+SuperHi Plus DESIGN.md https://styles.refero.design/style/a1f9e844-c4b6-4526-9cfc-81208c50aee1
+Contra DESIGN.md https://styles.refero.design/style/1608cf19-b249-46d4-bd37-b4c6a7fc4b56
+Auros DESIGN.md https://styles.refero.design/style/21cfe0c1-778d-4613-9f47-a5718eb929b3
+Motion: local library 旋转盘/items/002-stripe-motion/motion.js (waves, orbit, rays, pause and replay loop).
+*/
+let page = 0;
+let paused = matchMedia('(prefers-reduced-motion: reduce)').matches;
+let frame = 0, last = 0, elapsed = 0, paint = null;
+const TAU = 2*Math.PI;
+const random = n => {const x=Math.sin(n*127.1+311.7)*43758.5453;return x-Math.floor(x);};
+function cancelFrame(){cancelAnimationFrame(frame);frame=0;last=0;}
+function tick(now){
+  frame=0;
+  if(paused || document.hidden || !paint) return;
+  elapsed+=last?Math.min(0.05,(now-last)/1000):0;
+  last=now;paint(elapsed);frame=requestAnimationFrame(tick);
+}
+function start(){if(!paused&&!document.hidden&&paint&&!frame)frame=requestAnimationFrame(tick);}
+const resize = new ResizeObserver(()=>paint?.(elapsed));
+resize.observe($('slide'));
+function art(effect){
+  const canvas=document.createElement('canvas');canvas.className='art';canvas.setAttribute('aria-hidden','true');
+  $('slide').prepend(canvas);
+  const ctx=canvas.getContext('2d');if(!ctx)return null;
+  return t=>{
+    const w=canvas.clientWidth,h=canvas.clientHeight,dpr=Math.min(devicePixelRatio||1,2);
+    if(!w||!h)return;
+    if(canvas.width!==Math.round(w*dpr)||canvas.height!==Math.round(h*dpr)){canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);}
+    ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,h);
+    const dot=(x,y,r,color)=>{ctx.beginPath();ctx.arc(x,y,r,0,TAU);ctx.fillStyle=color;ctx.fill();};
+    if(effect==='waves'){
+      const gradient=ctx.createLinearGradient(0,0,w,0);
+      gradient.addColorStop(0,'#80ffdd50');gradient.addColorStop(.32,'#6bffe1');gradient.addColorStop(.74,'#36b9b3');gradient.addColorStop(1,'#ffd7e750');
+      for(let j=0;j<48;j++){
+        const v=j/47;ctx.beginPath();
+        for(let i=0;i<=100;i++){
+          const u=i/100,x=u*w,envelope=Math.sin(u*Math.PI)*h*.15;
+          const y=h*(.84-u*.22)+Math.sin(u*TAU-t*.35+v*1.2)*envelope+(v-.5)*h*.23*Math.cos(u*5-t*.22);
+          if(i)ctx.lineTo(x,y);else ctx.moveTo(x,y);
+        }
+        ctx.strokeStyle=gradient;ctx.globalAlpha=.26+.44*Math.sin(v*Math.PI);ctx.lineWidth=.8;ctx.stroke();
+      }
+      ctx.globalAlpha=1;
+    }
+    const cx=w*.79,cy=h*.58,r=Math.min(w*.23,h*.37);
+    const project=(x,y,z)=>{
+      const rotation=.35+Math.sin(t*.15)*.2,depth=x*Math.sin(rotation)+z*Math.cos(rotation);
+      return [cx+r*(x*Math.cos(rotation)-z*Math.sin(rotation)),cy+r*(y*.97-depth*.24),depth];
+    };
+    if(effect==='waves'||effect==='orbit'){
+      for(let i=0;i<520;i++){
+        const a=random(i)*TAU+t*.14,thick=(random(i+3000)-.5)*.24;
+        const [x,y,z]=project(Math.cos(a)*(1+thick),Math.sin(a)*(1+thick),(random(i+7000)-.5)*.8);
+        dot(x,y,.45+random(i+10000)*.7,'rgba(121,249,225,'+(.08+(z+1)*.15)+')');
+      }
+      return;
+    }
+    for(let i=0;i<72;i++){
+      const a=random(i)*TAU, length=.2+random(i+900)*.85;
+      const x=cx+Math.cos(a)*r*length,y=cy+Math.sin(a)*r*length;
+      ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(x,y);ctx.lineWidth=.7;ctx.strokeStyle='#8bffdf20';ctx.stroke();
+      for(let k=0;k<3;k++){
+        const f=(k/3+t*(.05+random(i+600)*.025)+random(i+1500))%1;
+        dot(cx+(x-cx)*f,cy+(y-cy)*f,.6+f*.7,'rgba(127,245,228,'+(.12+f*.22)+')');
+      }
+    }
+  };
+}
+const forecast=[
+  ['预报','未来一段时间，哪里可能出现洪峰？','结合雨水情与模型估计到达时段，注明误差和数据缺口。'],
+  ['预警','哪些人要提前知道？','向下游受影响社区和单位发送可理解的提醒，确认送达。'],
+  ['预演','不同响应方案会有什么后果？','在虚拟情景中比较撤离先后、道路中断和备用供水，记录假设。'],
+  ['预案','谁在什么条件下采取什么行动？','按职责明确发布、转移、安置、补给和反馈，平时先演练。']
+];
+const decisionFeedback=[
+  '等待能减少误报，但可能用掉宝贵的准备时间。可以先核对邻站和降雨，再按预案联络属地。',
+  '最后一次读数带有旧时间戳。把旧值当现状会低估或高估风险，应先标记缺测并复核。',
+  '可以并行核验邻站、降雨和现场巡查，同时告知属地做好准备。正式指令仍按预案和授权发布。'
+];
+function show(n){
+  page=Math.max(0,Math.min(slides.length-1,n));
+  const s=slides[page], slide=$('slide');
+  cancelFrame();paint=null;elapsed=0;
+  slide.className='slide '+(s.theme||'');
+  document.body.dataset.theme=s.theme||'water';
+  slide.innerHTML='<p class="kicker enter">'+s.tag+'</p>'+s.body;
+  if(s.art){paint=art(s.art);paint?.(0);start();}
+  $('viewport').scrollTop=0;
+  $('notesText').textContent=s.notes;
+  $('count').textContent=String(page+1).padStart(2,'0')+' / '+slides.length;
+  $('progress').style.width=(page+1)/slides.length*100+'%';
+  $('jump').value=String(page);
+  $('previous').disabled=page===0;
+  $('next').disabled=page===slides.length-1;
+  if($('forecastTabs')){
+    forecast.forEach(([name],i)=>{
+      const button=document.createElement('button');button.textContent=name;
+      button.onclick=()=>selectForecast(i);$('forecastTabs').append(button);
+    });
+    selectForecast(0);
+  }
+  if($('leadTime')){
+    $('leadTime').oninput=updateTime;$('delayTime').oninput=updateTime;updateTime();
+  }
+  if($('decisionChoices')){
+    const buttons=$('decisionChoices').querySelectorAll('button');
+    buttons.forEach(button=>{
+      button.setAttribute('aria-pressed','false');
+      button.onclick=()=>{
+        buttons.forEach(option=>option.setAttribute('aria-pressed',String(option===button)));
+        $('decisionFeedback').textContent=decisionFeedback[Number(button.dataset.choice)];
+      };
+    });
+  }
+}
+function selectForecast(index){
+  const [name,question,answer]=forecast[index];
+  [...$('forecastTabs').children].forEach((button,i)=>button.setAttribute('aria-pressed',String(i===index)));
+  $('forecastDetail').innerHTML='<div class="enter"><b>'+name+' · '+question+'</b><br>'+answer+'</div>';
+}
+function updateTime(){
+  const lead=+$('leadTime').value, delay=+$('delayTime').value, remaining=lead-delay;
+  $('leadValue').textContent=lead+' 分钟';$('delayValue').textContent=delay+' 分钟';
+  $('remaining').textContent=remaining>0?'剩余 '+remaining+' 分钟':'时间窗已耗尽';
+  $('timeBar').style.width=Math.max(0,remaining)/180*100+'%';
+  $('timeMessage').textContent=remaining>0?'还要估算实际转运用时，并给路况和预测误差留出余量。':'集结已用完提前量。请讨论更早启动、简化通知或就近避险的条件。';
+}
+function toggleNotes(open){
+  $('notes').hidden=!open;$('notesButton').setAttribute('aria-pressed',String(open));
+}
+function syncPause(){
+  document.body.classList.toggle('paused',paused);$('pause').setAttribute('aria-pressed',String(paused));
+  $('pause').textContent=paused?'继续动画':'暂停动画';
+  if(paused){cancelFrame();paint?.(elapsed);}else start();
+}
+slides.forEach((s,i)=>$('jump').add(new Option((i+1)+' · '+s.name,String(i))));
+$('jump').onchange=()=>show(+$('jump').value);
+$('previous').onclick=()=>show(page-1);$('next').onclick=()=>show(page+1);
+$('notesButton').onclick=()=>toggleNotes($('notes').hidden);$('closeNotes').onclick=()=>toggleNotes(false);
+$('pause').onclick=()=>{paused=!paused;syncPause();};
+if(window===window.top&&document.fullscreenEnabled){
+  $('fullscreen').hidden=false;
+  $('fullscreen').onclick=()=>{void (document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()).catch(()=>{});};
+}
+document.addEventListener('keydown',e=>{
+  if(e.altKey||e.ctrlKey||e.metaKey||/INPUT|SELECT|TEXTAREA/.test(e.target.tagName))return;
+  if(e.key==='Escape'&&!$('notes').hidden)toggleNotes(false);
+  if(['ArrowRight','ArrowLeft','PageDown','PageUp','Home','End'].includes(e.key)){
+    e.preventDefault();
+    show(e.key==='Home'?0:e.key==='End'?slides.length-1:page+(['ArrowRight','PageDown'].includes(e.key)?1:-1));
+  }
+});
+document.addEventListener('visibilitychange',()=>{if(document.hidden)cancelFrame();else start();});
+show(0);syncPause();
+</script>
+</body>
+</html>

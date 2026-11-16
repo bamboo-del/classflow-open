@@ -1,0 +1,6 @@
+{
+  "assistantRoot": "C:/path/to/wechat-assistant",
+  "wechatVersion": "4.1.13.65",
+  "origin": "http://127.0.0.1:5174",
+  "contacts": []
+}

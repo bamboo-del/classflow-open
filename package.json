@@ -1,0 +1,34 @@
+{
+  "name": "classflow",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24.7.0"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n api,web \"npm run dev -w @classflow/api\" \"npm run dev -w @classflow/web\"",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit -p apps/api && tsc --noEmit -p apps/web && tsc --noEmit -p tests",
+    "test": "tsx --test tests/*.test.ts",
+    "test:e2e": "playwright test",
+    "test:wechat": "python -m unittest discover -s tools/wechat -p test_*.py -v && tsx tools/wechat/verify-http.mts",
+    "build": "npm run build -w @classflow/api && npm run build -w @classflow/web",
+    "admin": "tsx apps/api/src/admin.ts",
+    "test:container": "node tests/container-qa.mjs"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.0",
+    "@playwright/test": "^1.56.0",
+    "@types/node": "^24.0.0",
+    "concurrently": "^9.2.1",
+    "eslint": "^9.39.0",
+    "tsx": "^4.20.6",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.46.0"
+  }
+}

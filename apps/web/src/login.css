@@ -1,0 +1,49 @@
+.login-shell {
+  min-height: 100dvh;
+  max-width: none;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: #f6f4fb;
+}
+.login-card {
+  width: min(100%, 380px);
+  background: #fff;
+  border: 1px solid #e4dfef;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 8px 32px #41326a0a;
+}
+.login-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 26px;
+  font-weight: 700;
+  font-size: 20px;
+  color: #6945d0;
+}
+.login-card h1 {
+  font-size: 24px;
+}
+.login-card > p {
+  margin: 8px 0 22px;
+  color: #6a647d;
+}
+.login-card form,
+.login-card label {
+  display: grid;
+  gap: 7px;
+}
+.login-card form {
+  gap: 16px;
+}
+.login-card input {
+  width: 100%;
+}
+.login-error {
+  color: #9b3453;
+}
+.login-card button {
+  min-height: 42px;
+}

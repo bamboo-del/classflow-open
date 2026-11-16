@@ -1,0 +1,32 @@
+name: classflow
+services:
+  app:
+    image: ${CLASSFLOW_IMAGE:-classflow:local}
+    build: .
+    restart: unless-stopped
+    init: true
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    cap_drop: [ALL]
+    tmpfs:
+      - /tmp:size=32m,noexec,nosuid,nodev
+    environment:
+      CLASSFLOW_ORIGIN: ${CLASSFLOW_ORIGIN:?Set exact public HTTPS origin}
+      CLASSFLOW_TRUST_PROXY: ${CLASSFLOW_TRUST_PROXY:-}
+      CLASSFLOW_DATA_DIR: /var/lib/classflow/${CLASSFLOW_DATA_SLOT:-live}
+      CLASSFLOW_BACKUP_KEEP: ${CLASSFLOW_BACKUP_KEEP:-14}
+      CLASSFLOW_BACKUP_DAYS: ${CLASSFLOW_BACKUP_DAYS:-30}
+    ports:
+      - "127.0.0.1:${CLASSFLOW_LOOPBACK_PORT:-14318}:4318"
+    volumes:
+      - data:/var/lib/classflow
+      - archives:/var/backups/classflow
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+volumes:
+  data: {}
+  archives: {}

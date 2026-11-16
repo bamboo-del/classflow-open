@@ -1,0 +1,10 @@
+services:
+  tls:
+    image: caddy:2.11.4-alpine
+    ports:
+      - "127.0.0.1:${CLASSFLOW_QA_TLS_PORT:?Set isolated TLS port}:443"
+    volumes:
+      - ./deploy/Caddyfile.qa:/etc/caddy/Caddyfile:ro
+    depends_on:
+      app:
+        condition: service_healthy
